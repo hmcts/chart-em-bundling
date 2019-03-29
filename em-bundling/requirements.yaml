@@ -7,9 +7,9 @@ dependencies:
     repository: '@hmcts'
 
 #    # Non-EM dependencies - find out chart names and versions
-#  - name: rpe-service-auth-provider
-#    version: ~0.0.2
-#    repository: '@hmcts'
+  - name: rpe-service-auth-provider
+    version: ~0.0.2
+    repository: '@hmcts'
 
 ##  Use SAAT DM store, since there's a weird secret thing going on. In future, use dm-store chart.
 #  - name: dm-store
