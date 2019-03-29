@@ -46,7 +46,7 @@ em-ccd-orchestrator:
 ###### DEPENDENCIES #####
 rpe-service-auth-provider:
   java:
-    releaseNameOverride: rpe-service-auth-provider
+    releaseNameOverride: chart-em-bundling-release-rpe-service-auth-provider
     image: hmcts.azurecr.io/hmcts/rpe-service-auth-provider:latest
 
 #dm-store:
