@@ -26,7 +26,7 @@ em-stitching:
       DM_STORE_APP_URL: http://dm-store-saat.service.core-compute-saat.internal
       DOCMOSIS_ENDPOINT: https://docmosis-development.platform.hmcts.net/rs/convert
 
-ccd-orchestrator:
+em-ccd-orchestrator:
   ccd-orchestrator:
     image: hmcts.azurecr.io/hmcts/em-ccd-orchestrator:latest
     readinessDelay: 40
