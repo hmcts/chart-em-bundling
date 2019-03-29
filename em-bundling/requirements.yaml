@@ -1,0 +1,21 @@
+dependencies:
+  - name: em-stitching
+    version: ~0.0.1
+    repository: '@hmcts'
+  - name: em-ccd-orchestrator
+    version: ~0.0.1
+    repository: '@hmcts'
+
+#    # Non-EM dependencies - find out chart names and versions
+#  - name: rpe-service-auth-provider
+#    version: ~0.0.2
+#    repository: '@hmcts'
+
+##  Use SAAT DM store, since there's a weird secret thing going on. In future, use dm-store chart.
+#  - name: dm-store
+#    version: ~0.0.1
+#    repository: '@hmcts'
+
+#  - Should I skip IDAM? Yes, no supported IDAM docker images.
+#  - Should I skip smtp-server? Yes, probably.
+#  - IDAM might use it, but we're using SAAT idam, so we don't care if it uses it.
