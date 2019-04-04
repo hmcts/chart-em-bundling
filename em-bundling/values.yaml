@@ -22,7 +22,7 @@ em-stitching:
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://chart-em-bundling-release-rpa-em-stitching-db:5432/emstitch?ssl=disable
       IDAM_API_BASE_URI: http://idam-api-idam-saat.service.core-compute-idam-saat.internal
-      S2S_BASE_URI: http://rpe-service-auth-provider
+      S2S_BASE_URI: http://chart-em-bundling-release-rpe-service-auth-provider
       DM_STORE_APP_URL: http://dm-store-saat.service.core-compute-saat.internal
       DOCMOSIS_ENDPOINT: https://docmosis-development.platform.hmcts.net/rs/convert
 
@@ -38,9 +38,9 @@ em-ccd-orchestrator:
     livenessPeriod: 15
     livenessFailureThreshold: 20
     environment:
-      EM_STITCHING_API_URL: http://em-stitching
+      EM_STITCHING_API_URL: http://chart-em-bundling-release-em-stitching
       IDAM_API_BASE_URI: http://idam-api-idam-saat.service.core-compute-idam-saat.internal
-      S2S_BASE_URI: http://rpe-service-auth-provider
+      S2S_BASE_URI: http://chart-em-bundling-release-rpe-service-auth-provider
       DM_STORE_APP_URL: http://dm-store-saat.service.core-compute-saat.internal
 
 ###### DEPENDENCIES #####
