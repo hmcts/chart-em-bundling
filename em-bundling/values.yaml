@@ -27,7 +27,7 @@ postgresql:
 
 ### EM SERVICES ###
 em-stitching:
-  em-stitching:
+  stitching:
     image: hmcts.azurecr.io/hmcts/em-stitching:latest
     livenessPath: '/health'
     environment:
