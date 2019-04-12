@@ -2,7 +2,7 @@
 CHART := em-bundling
 CI_VALUES := ci-values.yaml
 RELEASE := chart-${CHART}-release
-NAMESPACE := chart-tests
+NAMESPACE := evidence-mment
 TEST := ${RELEASE}-test-service
 ACR := hmctssandbox
 AKS_RESOURCE_GROUP := cnp-aks-sandbox-rg

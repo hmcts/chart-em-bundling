@@ -7,62 +7,68 @@ global:
   subscriptionId: "bf308a5c-0624-4334-8ff8-8dca9fd43783"
   tenantId: "531ff96d-0ae9-462a-8d2d-bec7c0b42082"
 
+tags:
+  postgresql-pod: false                 # any chart specific postgres
+  blobstorage: true                     # blob storage for dm-store
+
+postgresql:
+  resources:
+    requests:
+      cpu: 25m
+  initdbScripts:
+    init.sql: |-
+      CREATE USER evidence WITH PASSWORD 'evidence';
+      CREATE DATABASE evidence WITH OWNER = evidence ENCODING = 'UTF-8' CONNECTION LIMIT = -1;
+      CREATE USER emstitch WITH PASSWORD 'emstitch';
+      CREATE DATABASE emstitch WITH OWNER = emstitch ENCODING = 'UTF-8' CONNECTION LIMIT = -1;
+  nameOverride: postgres-db
+  persistence:
+    enabled: false
+
 ### EM SERVICES ###
 em-stitching:
   em-stitching:
     image: hmcts.azurecr.io/hmcts/em-stitching:latest
-    readinessDelay: 40
-    readinessTimeout: 20
-    readinessFailureThreshold: 20
-    readinessPeriod: 15
-    livenessDelay: 40
-    livenessTimeout: 20
-    livenessPeriod: 15
-    livenessFailureThreshold: 20
+    livenessPath: '/health'
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://chart-em-bundling-release-rpa-em-stitching-db:5432/emstitch?ssl=disable
+      SPRING_DATASOURCE_URL: 'jdbc:postgresql://chart-em-bundling-release-postgres-db:5432/emstitch?ssl=disable'
+      S2S_BASE_URI: http://chart-em-bundling-release-rpe-s2s
+      DM_STORE_APP_URL: http://chart-em-bundling-release-dm-store
       IDAM_API_BASE_URI: http://idam-api-idam-saat.service.core-compute-idam-saat.internal
-      S2S_BASE_URI: http://chart-em-bundling-release-rpe-service-auth-provider
-      DM_STORE_APP_URL: http://dm-store-saat.service.core-compute-saat.internal
-      DOCMOSIS_ENDPOINT: https://docmosis-development.platform.hmcts.net/rs/convert
 
 em-ccd-orchestrator:
   ccd-orchestrator:
     image: hmcts.azurecr.io/hmcts/em-ccd-orchestrator:latest
-    readinessDelay: 40
-    readinessTimeout: 20
-    readinessFailureThreshold: 20
-    readinessPeriod: 15
-    livenessDelay: 40
-    livenessTimeout: 20
-    livenessPeriod: 15
-    livenessFailureThreshold: 20
+    livenessPath: '/health'
     environment:
       EM_STITCHING_API_URL: http://chart-em-bundling-release-em-stitching
+      S2S_BASE_URI: http://chart-em-bundling-release-rpe-s2s
+      DM_STORE_APP_URL: http://chart-em-bundling-release-dm-store
       IDAM_API_BASE_URI: http://idam-api-idam-saat.service.core-compute-idam-saat.internal
-      S2S_BASE_URI: http://chart-em-bundling-release-rpe-service-auth-provider
-      DM_STORE_APP_URL: http://dm-store-saat.service.core-compute-saat.internal
 
 ###### DEPENDENCIES #####
 rpe-service-auth-provider:
   java:
-    releaseNameOverride: chart-em-bundling-release-rpe-service-auth-provider
+    releaseNameOverride: chart-em-bundling-release-rpe-s2s
     image: hmcts.azurecr.io/hmcts/rpe-service-auth-provider:latest
 
-#dm-store:
-#  java:
-#    releaseNameOverride: dm-store
-#    image: hmcts.azurecr.io/hmcts/dm-store:latest
-#    environment:
-#      IDAM_USER_BASE_URI: http://idam-api-idam-saat.service.core-compute-idam-saat.internal
-#      IDAM_S2S_BASE_URI: http://rpe-service-auth-provider
-#    secrets:
-#      STORAGE_ACCOUNT_NAME:
-#        secretRef: storage-secret-em-annotation
-#        key: storageAccountName
-#        STORAGE_ACCOUNT_KEY:
-#          secretRef: storage-secret-em-annotation
-#          key: accessKey
-#        STORAGE_CONTAINER_DOCUMENT_CONTAINER_NAME:
-#          secretRef: container-secret-em-annotation-dm-docstore
-#          key: containerName
+dm-store:
+  blobstorage:
+    enabled: true
+  java:
+#    postgresql:
+#      nameOverride: dm-store-db
+    releaseNameOverride: chart-em-bundling-release-dm-store
+    image: hmcts.azurecr.io/hmcts/dm-store:latest
+    keyVaults:
+      ccd:
+        resourceGroup: ccd-shared
+        secrets:
+          - dm-store-storage-account-primary-connection-string
+          - dm-store-storage-account-secondary-connection-string
+    environment:
+      SPRING_DATASOURCE_URL: 'jdbc:postgresql://chart-em-bundling-release-postgres-db:5432/evidence'
+      IDAM_USER_BASE_URI: http://idam-api-idam-saat.service.core-compute-idam-saat.internal
+      S2S_BASE_URI: http://chart-em-bundling-release-rpe-s2s
+      ENABLE_DB_MIGRATE: 'true'
+      ENABLE_TTL: 'false'

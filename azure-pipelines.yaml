@@ -24,7 +24,7 @@ jobs:
         parameters:
           chartName: em-bundling
           chartReleaseName: chart-em-bundling-ci-test
-          chartNamespace: chart-tests
+          chartNamespace: evidence-mment
           helmInstallTimeout: "300"
 
   - job: Release
@@ -42,4 +42,4 @@ jobs:
         parameters:
           chartName: em-bundling
           chartReleaseName: chart-em-bundling
-          chartNamespace: chart-tests
+          chartNamespace: evidence-mment
