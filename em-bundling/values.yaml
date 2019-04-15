@@ -29,7 +29,6 @@ postgresql:
 em-stitching:
   stitching:
     image: hmcts.azurecr.io/hmcts/em-stitching:latest
-    livenessPath: '/health'
     environment:
       SPRING_DATASOURCE_URL: 'jdbc:postgresql://chart-em-bundling-release-postgres-db:5432/emstitch?ssl=disable'
       S2S_BASE_URI: http://chart-em-bundling-release-rpe-s2s
@@ -39,7 +38,6 @@ em-stitching:
 em-ccd-orchestrator:
   ccd-orchestrator:
     image: hmcts.azurecr.io/hmcts/em-ccd-orchestrator:latest
-    livenessPath: '/health'
     environment:
       EM_STITCHING_API_URL: http://chart-em-bundling-release-em-stitching
       S2S_BASE_URI: http://chart-em-bundling-release-rpe-s2s
@@ -56,8 +54,6 @@ dm-store:
   blobstorage:
     enabled: true
   java:
-#    postgresql:
-#      nameOverride: dm-store-db
     releaseNameOverride: chart-em-bundling-release-dm-store
     image: hmcts.azurecr.io/hmcts/dm-store:latest
     keyVaults:
