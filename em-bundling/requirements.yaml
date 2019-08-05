@@ -1,20 +1,20 @@
 dependencies:
   - name: em-stitching
-    version: ~0.0.1
-    repository: '@hmcts'
+    version: ~0.1.1
+    repository: '@hmctspublic'
 
   - name: em-ccd-orchestrator
-    version: ~0.0.1
-    repository: '@hmcts'
+    version: ~0.1.0
+    repository: '@hmctspublic'
 
 #   DEPENDENCIES
   - name: rpe-service-auth-provider
     version: ~0.0.2
-    repository: '@hmcts'
+    repository: '@hmctspublic'
 
   - name: dm-store
     version: ~1.0.0
-    repository: '@hmcts'
+    repository: '@hmctspublic'
 
   - name: postgresql
     version: ~3.1.0
