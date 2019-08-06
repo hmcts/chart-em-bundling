@@ -28,16 +28,16 @@ postgresql:
 ### EM SERVICES ###
 em-stitching:
   stitching:
-    image: hmcts.azurecr.io/hmcts/em-stitching:latest
+    image: hmctspublic.azurecr.io/em/stitching:latest
     environment:
-      SPRING_DATASOURCE_URL: 'jdbc:postgresql://chart-em-bundling-release-postgres-db:5432/emstitch?ssl=disable'
+      SPRING_DATASOURCE_URL: 'jdbc:postgresql://chart-em-bundling-release-postgres-db:5432/postgres?ssl=disable'
       S2S_BASE_URI: http://chart-em-bundling-release-rpe-s2s
       DM_STORE_APP_URL: http://chart-em-bundling-release-dm-store
       IDAM_API_BASE_URI: http://idam-api-idam-saat.service.core-compute-idam-saat.internal
 
 em-ccd-orchestrator:
   ccd-orchestrator:
-    image: hmcts.azurecr.io/hmcts/em-ccd-orchestrator:latest
+    image: hmctspublic.azurecr.io/em/ccd-orchestrator:latest
     environment:
       EM_STITCHING_API_URL: http://chart-em-bundling-release-em-stitching
       S2S_BASE_URI: http://chart-em-bundling-release-rpe-s2s
@@ -48,14 +48,14 @@ em-ccd-orchestrator:
 rpe-service-auth-provider:
   java:
     releaseNameOverride: chart-em-bundling-release-rpe-s2s
-    image: hmcts.azurecr.io/hmcts/rpe-service-auth-provider:latest
+    image: hmctspublic.azurecr.io/rpe/service-auth-provider:latest
 
 dm-store:
   blobstorage:
     enabled: true
   java:
     releaseNameOverride: chart-em-bundling-release-dm-store
-    image: hmcts.azurecr.io/hmcts/dm-store:latest
+    image: hmctspublic.azurecr.io/dm/store:latest
     keyVaults:
       ccd:
         resourceGroup: ccd-shared
