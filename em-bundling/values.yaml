@@ -51,11 +51,9 @@ rpe-service-auth-provider:
     image: hmctspublic.azurecr.io/rpe/service-auth-provider:latest
 
 dm-store:
-  blobstorage:
-    enabled: false
   java:
     releaseNameOverride: chart-em-bundling-release-dm-store
-    image: hmcts.azurecr.io/hmcts/dm-store:pr-334  # fix for postgres bug
+    image: hmcts.azurecr.io/hmcts/dm-store:latest
     keyVaults:
       ccd:
         resourceGroup: ccd-shared
