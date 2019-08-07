@@ -9,7 +9,7 @@ global:
 
 tags:
   postgresql-pod: false                 # any chart specific postgres
-  blobstorage: true                     # blob storage for dm-store
+  blobstorage: false                     # blob storage for dm-store
 
 postgresql:
   resources:
@@ -52,10 +52,10 @@ rpe-service-auth-provider:
 
 dm-store:
   blobstorage:
-    enabled: true
+    enabled: false
   java:
     releaseNameOverride: chart-em-bundling-release-dm-store
-    image: hmctspublic.azurecr.io/dm/store:latest
+    image: hmcts.azurecr.io/hmcts/dm-store:pr-334  # fix for postgres bug
     keyVaults:
       ccd:
         resourceGroup: ccd-shared
