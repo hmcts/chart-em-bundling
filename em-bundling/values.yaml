@@ -53,7 +53,7 @@ rpe-service-auth-provider:
 dm-store:
   java:
     releaseNameOverride: chart-em-bundling-release-dm-store
-    image: hmcts.azurecr.io/hmcts/dm-store:latest
+    image: hmctspublic.azurecr.io/dm/store:latest
     environment:
       SPRING_DATASOURCE_URL: 'jdbc:postgresql://chart-em-bundling-release-postgres-db:5432/evidence'
       IDAM_USER_BASE_URI: http://idam-api-idam-saat.service.core-compute-idam-saat.internal
