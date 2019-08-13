@@ -27,6 +27,7 @@ postgresql:
 
 ### EM SERVICES ###
 em-stitching:
+    releaseNameOverride: chart-em-bundling-release-em-stitching
     image: hmctspublic.azurecr.io/em/stitching:latest
     environment:
       SPRING_DATASOURCE_URL: 'jdbc:postgresql://chart-em-bundling-release-postgres-db:5432/postgres?ssl=disable'
