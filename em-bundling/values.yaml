@@ -27,6 +27,7 @@ postgresql:
 
 ### EM SERVICES ###
 em-stitching:
+  stitching:
     releaseNameOverride: chart-em-bundling-release-em-stitching
     image: hmctspublic.azurecr.io/em/stitching:latest
     environment:
@@ -36,6 +37,7 @@ em-stitching:
       IDAM_API_BASE_URI: https://idam-api.demo.platform.hmcts.net
 
 em-ccd-orchestrator:
+  ccd-orchestrator:
     image: hmctspublic.azurecr.io/em/ccd-orchestrator:latest
     environment:
       EM_STITCHING_API_URL: http://chart-em-bundling-release-em-stitching
