@@ -16,7 +16,6 @@ resources:
       endpoint: 'hmcts'
 
 jobs:
- IGNORE ANY VALIDATION FOR NOW - not sure how this will work... ci-values will be values - any point?
   - job: Validate
     pool:
       vmImage: 'Ubuntu 16.04'
