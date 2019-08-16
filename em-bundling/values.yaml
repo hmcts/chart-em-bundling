@@ -17,10 +17,10 @@ postgresql:
       cpu: 25m
   initdbScripts:
     init.sql: |-
-      CREATE USER evidence WITH PASSWORD 'evidence';
-      CREATE DATABASE evidence WITH OWNER = evidence ENCODING = 'UTF-8' CONNECTION LIMIT = -1;
-      CREATE USER emstitch WITH PASSWORD 'emstitch';
-      CREATE DATABASE emstitch WITH OWNER = emstitch ENCODING = 'UTF-8' CONNECTION LIMIT = -1;
+      CREATE USER "evidence" WITH PASSWORD "evidence";
+      CREATE DATABASE "evidence" WITH OWNER = "evidence" ENCODING = 'UTF-8' CONNECTION LIMIT = -1;
+      CREATE USER "emstitch" WITH PASSWORD "emstitch';
+      CREATE DATABASE "emstitch" WITH OWNER = "emstitch" ENCODING = 'UTF-8' CONNECTION LIMIT = -1;
   nameOverride: postgres-db
   persistence:
     enabled: false
