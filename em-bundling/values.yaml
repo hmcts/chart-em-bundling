@@ -28,7 +28,6 @@ tags:
 ### EM SERVICES ###
 em-stitching:
   stitching:
-    releaseNameOverride: chart-em-bundling-release-em-stitching
     image: hmctspublic.azurecr.io/em/stitching:latest
     environment:
       SPRING_DATASOURCE_URL: 'jdbc:postgresql://postgres-db:5432/postgres?ssl=disable'
@@ -40,7 +39,7 @@ em-ccd-orchestrator:
   ccd-orchestrator:
     image: hmctspublic.azurecr.io/em/ccd-orchestrator:latest
     environment:
-      EM_STITCHING_API_URL: http://chart-em-bundling-release-em-stitching
+      EM_STITCHING_API_URL: http://stitching
       S2S_BASE_URI: http://rpe-s2s
       DM_STORE_APP_URL: http://dm-store
       IDAM_API_BASE_URI: https://idam-api.aat.platform.hmcts.net
