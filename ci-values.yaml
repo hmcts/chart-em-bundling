@@ -1,0 +1,2 @@
+# This file is required.
+# With out this file, build job fails stating :- Error: open ci-values.yaml: no such file or directory
