@@ -11,19 +11,19 @@ tags:
   postgresql-pod: false                 # any chart specific postgres
   blobstorage: false                     # blob storage for dm-store
 
-postgresql:
-  resources:
-    requests:
-      cpu: 25m
-  initdbScripts:
-    init.sql: |-
-      CREATE USER evidence WITH PASSWORD evidence;
-      CREATE DATABASE evidence WITH OWNER = 'evidence' ENCODING = 'UTF-8' CONNECTION LIMIT = -1;
-      CREATE USER emstitch WITH PASSWORD emstitch;
-      CREATE DATABASE emstitch WITH OWNER = 'emstitch' ENCODING = 'UTF-8' CONNECTION LIMIT = -1;
-  nameOverride: postgres-db
-  persistence:
-    enabled: false
+#postgresql:
+#  resources:
+#    requests:
+#      cpu: 25m
+#  initdbScripts:
+#    init.sql: |-
+#      CREATE USER evidence WITH PASSWORD evidence;
+#      CREATE DATABASE evidence WITH OWNER = 'evidence' ENCODING = 'UTF-8' CONNECTION LIMIT = -1;
+#      CREATE USER emstitch WITH PASSWORD emstitch;
+#      CREATE DATABASE emstitch WITH OWNER = 'emstitch' ENCODING = 'UTF-8' CONNECTION LIMIT = -1;
+#  nameOverride: postgres-db
+#  persistence:
+#    enabled: false
 
 ### EM SERVICES ###
 em-stitching:
@@ -68,7 +68,26 @@ dm-store:
       S2S_BASE_URI: http://rpe-s2s
       ENABLE_DB_MIGRATE: 'true'
       ENABLE_TTL: 'false'
+      SPRING_DATASOURCE_USERNAME: hmcts
+      SPRING_DATASOURCE_PASSWORD: hmcts
       ENABLE_AZURE_STORAGE_CONTAINER: 'false'
       POSTGRES_STORAGE_ENABLED: 'true'
       CCD_DM_STORE_STORAGE_ACC_PRIMARY_CONN_STRING: 'dm-store-storage-account-primary-connection-string'
       CCD_DM_STORE_STORAGE_ACC_SECONDARY_CONN_STRING: 'dm-store-storage-account-secondary-connection-string'
+
+postgresql:
+  pgParameters:
+    maxConnections: 150
+  resources:
+    requests:
+      cpu: 25m
+  initdbScripts:
+    init.sql: |-
+      CREATE DATABASE "evidence" WITH OWNER = hmcts ENCODING = 'UTF-8' CONNECTION LIMIT = -1;
+      CREATE DATABASE "emstitch" WITH OWNER = hmcts ENCODING = 'UTF-8' CONNECTION LIMIT = -1;
+  postgresqlUsername: hmcts
+  postgresqlPassword: hmcts
+  postgresqlDatabase: user-profile
+  releaseNameOverride: postgres-db
+  persistence:
+    enabled: false
