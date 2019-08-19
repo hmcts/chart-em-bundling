@@ -31,6 +31,8 @@ em-stitching:
     image: hmctspublic.azurecr.io/em/stitching:latest
     environment:
       SPRING_DATASOURCE_URL: 'jdbc:postgresql://chart-em-bundling-ci-test-postgresql:5432/emstitch?ssl=disable'
+      SPRING_DATASOURCE_USERNAME: hmcts
+      SPRING_DATASOURCE_PASSWORD: hmcts
       S2S_BASE_URI: http://rpe-s2s
       DM_STORE_APP_URL: http://dm-store
       IDAM_API_BASE_URI: https://idam-api.aat.platform.hmcts.net
@@ -73,6 +75,7 @@ dm-store:
       POSTGRES_STORAGE_ENABLED: 'true'
       CCD_DM_STORE_STORAGE_ACC_PRIMARY_CONN_STRING: 'dm-store-storage-account-primary-connection-string'
       CCD_DM_STORE_STORAGE_ACC_SECONDARY_CONN_STRING: 'dm-store-storage-account-secondary-connection-string'
+      STORAGEACCOUNT_PRIMARY_CONNECTION_STRING: 'DefaultEndpointsProtocol=https;AccountName=AAAAAAAAAAAAAAAA;AccountKey=AAAAAAAAAAAAAAAA;EndpointSuffix=core.windows.net'
 
 postgresql:
   pgParameters:
