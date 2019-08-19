@@ -42,4 +42,4 @@ jobs:
         parameters:
           chartName: em-bundling
           chartReleaseName: chart-em-bundling
-          chartNamespace: evidence-mment
+          chartNamespace: chart-tests
