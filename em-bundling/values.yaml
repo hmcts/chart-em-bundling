@@ -60,8 +60,6 @@ dm-store:
       SPRING_DATASOURCE_PASSWORD: hmcts
       ENABLE_AZURE_STORAGE_CONTAINER: 'false'
       POSTGRES_STORAGE_ENABLED: 'true'
-      CCD_DM_STORE_STORAGE_ACC_PRIMARY_CONN_STRING: 'dm-store-storage-account-primary-connection-string'
-      CCD_DM_STORE_STORAGE_ACC_SECONDARY_CONN_STRING: 'dm-store-storage-account-secondary-connection-string'
       STORAGEACCOUNT_PRIMARY_CONNECTION_STRING: 'DefaultEndpointsProtocol=https;AccountName=AAAAAAAAAAAAAAAA;AccountKey=AAAAAAAAAAAAAAAA;EndpointSuffix=core.windows.net'
 
 postgresql:
@@ -75,6 +73,5 @@ postgresql:
   postgresqlUsername: hmcts
   postgresqlPassword: hmcts
   postgresqlDatabase: user-profile
-  releaseNameOverride: postgres-db
   persistence:
     enabled: false
