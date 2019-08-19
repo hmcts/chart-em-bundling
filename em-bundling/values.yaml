@@ -33,8 +33,8 @@ em-stitching:
       SPRING_DATASOURCE_URL: 'jdbc:postgresql://chart-em-bundling-ci-test-postgresql:5432/emstitch?ssl=disable'
       SPRING_DATASOURCE_USERNAME: hmcts
       SPRING_DATASOURCE_PASSWORD: hmcts
-      S2S_BASE_URI: http://chart-em-bundling-ci-test-rpe-s2s
-      DM_STORE_APP_URL: http://chart-em-bundling-ci-test-dm-store
+      S2S_BASE_URI: http://rpe-s2s
+      DM_STORE_APP_URL: http://dm-store
       IDAM_API_BASE_URI: https://idam-api.aat.platform.hmcts.net
 
 em-ccd-orchestrator:
@@ -42,8 +42,8 @@ em-ccd-orchestrator:
     image: hmctspublic.azurecr.io/em/ccd-orchestrator:latest
     environment:
       EM_STITCHING_API_URL: http://chart-em-bundling-ci-test-stitching
-      S2S_BASE_URI: http://chart-em-bundling-ci-test-rpe-s2s
-      DM_STORE_APP_URL: http://chart-em-bundling-ci-test-dm-store
+      S2S_BASE_URI: http://rpe-s2s
+      DM_STORE_APP_URL: http://dm-store
       IDAM_API_BASE_URI: https://idam-api.aat.platform.hmcts.net
 
 ###### DEPENDENCIES #####
@@ -54,6 +54,7 @@ rpe-service-auth-provider:
 
 dm-store:
   java:
+    releaseNameOverride: dm-store
     image: hmctspublic.azurecr.io/dm/store:latest
     secrets:
       STORAGE_ACCOUNT_NAME:
@@ -66,7 +67,7 @@ dm-store:
     environment:
       SPRING_DATASOURCE_URL: 'jdbc:postgresql://chart-em-bundling-ci-test-postgresql:5432/evidence'
       IDAM_USER_BASE_URI: https://idam-api.aat.platform.hmcts.net
-      S2S_BASE_URI: http://chart-em-bundling-ci-test-rpe-s2s
+      S2S_BASE_URI: http://rpe-s2s
       ENABLE_DB_MIGRATE: 'true'
       ENABLE_TTL: 'false'
       SPRING_DATASOURCE_USERNAME: hmcts
