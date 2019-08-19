@@ -11,20 +11,6 @@ tags:
   postgresql-pod: false                 # any chart specific postgres
   blobstorage: false                     # blob storage for dm-store
 
-#postgresql:
-#  resources:
-#    requests:
-#      cpu: 25m
-#  initdbScripts:
-#    init.sql: |-
-#      CREATE USER evidence WITH PASSWORD evidence;
-#      CREATE DATABASE evidence WITH OWNER = 'evidence' ENCODING = 'UTF-8' CONNECTION LIMIT = -1;
-#      CREATE USER emstitch WITH PASSWORD emstitch;
-#      CREATE DATABASE emstitch WITH OWNER = 'emstitch' ENCODING = 'UTF-8' CONNECTION LIMIT = -1;
-#  nameOverride: postgres-db
-#  persistence:
-#    enabled: false
-
 ### EM SERVICES ###
 em-stitching:
   stitching:
@@ -79,8 +65,6 @@ dm-store:
       STORAGEACCOUNT_PRIMARY_CONNECTION_STRING: 'DefaultEndpointsProtocol=https;AccountName=AAAAAAAAAAAAAAAA;AccountKey=AAAAAAAAAAAAAAAA;EndpointSuffix=core.windows.net'
 
 postgresql:
-  pgParameters:
-    maxConnections: 150
   resources:
     requests:
       cpu: 25m
